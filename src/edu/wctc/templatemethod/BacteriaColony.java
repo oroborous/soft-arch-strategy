@@ -26,6 +26,9 @@ public abstract class BacteriaColony {
         }
     }
 
+    // How the bacteria population grows will vary.
+    // Subclasses will implement this method with different
+    // mathematical formulas to calculate population growth.
     public abstract void grow();
 
     private void introduceMutations() {
