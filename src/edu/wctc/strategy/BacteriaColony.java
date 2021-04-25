@@ -1,4 +1,4 @@
-package edu.wctc.strategy.after;
+package edu.wctc.strategy;
 
 public class BacteriaColony {
     // The current number of organisms in the colony

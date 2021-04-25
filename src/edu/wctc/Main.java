@@ -1,10 +1,10 @@
 package edu.wctc;
 
-import edu.wctc.strategy.after.*;
-import edu.wctc.strategy.before.ExponentialColony;
-import edu.wctc.strategy.before.LinearColony;
-import edu.wctc.strategy.before.LogisticColony;
-import edu.wctc.strategy.before.NoGrowthColony;
+import edu.wctc.strategy.*;
+import edu.wctc.templatemethod.ExponentialColony;
+import edu.wctc.templatemethod.LinearColony;
+import edu.wctc.templatemethod.LogisticColony;
+import edu.wctc.templatemethod.NoGrowthColony;
 
 import java.util.Scanner;
 
@@ -13,25 +13,26 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("1. Use Template Method (abstract BacteriaColony class)");
-        System.out.println("2. Use Strategy (GrowthStrategy interface)");
+        System.out.println("1. Use Strategy (GrowthStrategy interface)");
+        System.out.println("2. Use Template Method (abstract BacteriaColony class)");
         System.out.print(">> ");
 
         int choice = Integer.parseInt(scanner.nextLine());
 
         if (choice == 1)
-            runBefore();
+            runStrategy();
         else
-            runAfter();
+            runTemplateMethod();
+
     }
 
-    public static void runBefore() {
+    public static void runTemplateMethod() {
         System.out.print("Enter starting population: ");
         long population = Long.parseLong(scanner.nextLine());
 
         int choice = getGrowthType();
 
-        edu.wctc.strategy.before.BacteriaColony colony = null;
+        edu.wctc.templatemethod.BacteriaColony colony = null;
 
         /**
          * With the template method pattern, we choose which subclass to
@@ -45,13 +46,13 @@ public class Main {
          */
         switch (choice) {
             case 1:
-                colony = new ExponentialColony(population,.2);
+                colony = new ExponentialColony(population, .2);
                 break;
             case 2:
-                colony = new LogisticColony(population,.2, 20000);
+                colony = new LogisticColony(population, .2, 20000);
                 break;
             case 3:
-                colony = new LinearColony(population,20);
+                colony = new LinearColony(population, 20);
                 break;
             case 4:
                 colony = new NoGrowthColony(population);
@@ -61,11 +62,8 @@ public class Main {
                 System.exit(0);
         }
 
-        // Tell the BacteriaColony to grow 10 times using its current strategy
-        for (int time = 1; time <= 10; time++) {
-            colony.grow();
-            System.out.println("Time " + time + ", Population " + colony.getPopulation());
-        }
+        // Call the template method
+        colony.runSimulation(10);
 
     }
 
@@ -73,17 +71,17 @@ public class Main {
     /**
      * This methods demonstrates how the BacteriaColony's behavior can be
      * swapped out at run time by creating different Strategy objects.
-     *
+     * <p>
      * To be more dynamic, we could have prompted the
      * user for the parameters of the different growth strategies (e.g. the
      * growth rate, max population), but they have been hard coded for
      * simplicity.
      */
-    public static void runAfter() {
+    public static void runStrategy() {
         System.out.print("Enter starting population: ");
         long population = Long.parseLong(scanner.nextLine());
 
-        edu.wctc.strategy.after.BacteriaColony colony = new edu.wctc.strategy.after.BacteriaColony(population);
+        BacteriaColony colony = new BacteriaColony(population);
 
         int choice = 0;
         while (choice != 5) {

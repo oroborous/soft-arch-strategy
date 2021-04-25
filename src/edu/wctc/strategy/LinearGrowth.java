@@ -1,4 +1,4 @@
-package edu.wctc.strategy.before;
+package edu.wctc.strategy;
 
 /**
  * A linear growth algorithm adds the same
@@ -14,16 +14,17 @@ package edu.wctc.strategy.before;
  * reaches 1,000,000, it will still only grow
  * by 5 at a time.
  */
-public class LinearColony extends BacteriaColony {
+public class LinearGrowth implements GrowthStrategy {
+
     private int delta;
 
-    public LinearColony(long population, int delta) {
-        super(population);
+    public LinearGrowth(int delta) {
         this.delta = delta;
     }
 
     @Override
-    public void grow() {
-        population += delta;
+    public long grow(long initialPopulation) {
+        return initialPopulation + delta;
     }
+
 }

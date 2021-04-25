@@ -1,4 +1,4 @@
-package edu.wctc.strategy.after;
+package edu.wctc.strategy;
 
 public interface GrowthStrategy {
     /**

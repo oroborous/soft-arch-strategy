@@ -1,4 +1,4 @@
-package edu.wctc.strategy.after;
+package edu.wctc.strategy;
 
 /**
  * Logistic growth is like exponential growth, but it takes

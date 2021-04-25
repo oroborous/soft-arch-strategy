@@ -1,4 +1,4 @@
-package edu.wctc.strategy.after;
+package edu.wctc.strategy;
 
 /**
  * This population never grows. It always remains

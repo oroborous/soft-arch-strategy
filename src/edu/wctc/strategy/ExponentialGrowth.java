@@ -1,4 +1,4 @@
-package edu.wctc.strategy.after;
+package edu.wctc.strategy;
 
 /**
  * Exponential growth assumes that a population can
