@@ -28,7 +28,13 @@ public abstract class BacteriaColony {
 
     public abstract void grow();
 
-    private void introduceMutations() {}
+    private void introduceMutations() {
+        // Do some science-y stuff.
+        // This part of the algorithm does not vary.
+    }
 
-    private void randomizeEnvironment() {}
+    private void randomizeEnvironment() {
+        // More science stuff.
+        // Every simulation does this the same way.
+    }
 }
